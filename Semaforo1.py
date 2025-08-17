@@ -1,71 +1,44 @@
-
 import time
 
-
-def semaforo():
-    contador = 0
-    def luces():
-        print("Estado de los semáforos:")
-        print("Semaforo 1", Semaforo1)
-        print("Semaforo 2", Semaforo2)
-        print("Semaforo 3", Semaforo3)
-        print("Semaforo 4", Semaforo4)
-        
-    while contador < 2:
-        print("Ciclo", contador + 1)
-        contador = contador + 1
-        #semaforo1
-        Semaforo1 = "Luz Verde"
-        Semaforo2 = "Luz Roja"
-        Semaforo3 = "Luz roja"
-        Semaforo4 = "Luz roja"
-        luces()
-        time.sleep(5)
-        Semaforo1 = "Luz Amarilla"
-        Semaforo2 = "Luz Roja"
-        Semaforo3 = "Luz roja"
-        Semaforo4 = "Luz roja"
-        luces()
-        time.sleep(5)
-        #semaforo2
-        Semaforo1 = "Luz Roja"      
-        Semaforo2 = "Luz Verde"
-        Semaforo3 = "Luz roja"
-        Semaforo4 = "Luz roja"
-        luces()
-        time.sleep(5)
-        Semaforo1 = "Luz Roja"
-        Semaforo2 = "Luz Amarilla"
-        Semaforo3 = "Luz roja"
-        Semaforo4 = "Luz roja"
-        luces()
-        time.sleep(5)
-        #semaforo3
-        Semaforo1 = "Luz Roja"
-        Semaforo2 = "Luz Roja"  
-        Semaforo3 = "Luz Verde"
-        Semaforo4 = "Luz roja"
-        luces()
-        time.sleep(5)   
-        Semaforo1 = "Luz Roja"
-        Semaforo2 = "Luz Roja"
-        Semaforo3 = "Luz Amarilla"
-        Semaforo4 = "Luz roja"
-        luces() 
-        time.sleep(5)
-        #semaforo4
-        Semaforo1 = "Luz Roja"
-        Semaforo2 = "Luz Roja"
-        Semaforo3 = "Luz Roja"
-        Semaforo4 = "Luz Verde"
-        luces()
-        time.sleep(5)
-        Semaforo1 = "Luz Roja"
-        Semaforo2 = "Luz Roja"
-        Semaforo3 = "Luz Roja"
-        Semaforo4 = "Luz Amarilla"
-        luces() 
-        time.sleep(5)
-    print("Fin del ciclo de semáforos")
     
-semaforo()
+def semaforo_con_boton():
+    # Tiempos para cada estado
+    tiempo_verde = 5
+    tiempo_amarillo = 2
+    tiempo_rojo = 5
+
+    def mostrar_estado(semaforo, estado):
+        print(f"Semáforo {semaforo}: {estado}")
+        if estado == "Luz Verde":
+            print("Mensaje audible: Puede cruzar.")
+        elif estado == "Luz Roja":
+            print("Mensaje audible: Espere, no cruce.")
+        time.sleep(1)
+
+    for ciclo in range(2):
+        print(f"\nCiclo {ciclo + 1}")
+        
+        # Semáforo 1: Verde
+        mostrar_estado(1, "Luz Verde")
+        time.sleep(tiempo_verde)
+        
+        # Simular botón peatonal
+        boton = input("¿Presionó el botón peatonal? (s/n): ").strip().lower()
+        if boton == "s":
+            print("Botón peatonal presionado. Cambiando a luz roja...")
+            mostrar_estado(1, "Luz Roja")
+            time.sleep(tiempo_rojo)
+            continue  # Saltar al siguiente ciclo
+        
+        # Semáforo 1: Amarillo
+        mostrar_estado(1, "Luz Amarilla")
+        time.sleep(tiempo_amarillo)
+        
+        # Semáforo 1: Rojo
+        mostrar_estado(1, "Luz Roja")
+        time.sleep(tiempo_rojo)
+
+    print("\nFin del ciclo de semáforos.")
+
+# Ejecutar la simulación con botón
+semaforo_con_boton()
